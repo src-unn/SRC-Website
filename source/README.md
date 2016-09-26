@@ -14,8 +14,10 @@ Check out [Laravel Documentation](https://laravel.com/docs/5.3/) for further det
 ###<a name="standards"></a> Coding Style Standards
 To ensure that the source code remains maintainable in the foreseeable future, standards are strictly 
 adhered to (unless otherwise dictated), from framework setups to to API integrations. All contributors are advised to 
-write and submit standard codes, with consistent styles. Precisely, the [PSR-2](../docs/PSR-2_CSG.pdf)
-standards have been adopted for this project.
+write and submit standard codes, with consistent styles. Precisely, the [PSR standards](http://www.php-fig.org/psr/) 
+are applied in this project.
+Refer to [PSR-1_Basic Coding Standards](../docs/PSR-1_BCS.pdf) and [PSR-2_Coding Style Guide](../docs/PSR-2_CSG.pdf)
+for details.
 
 ###<a name="requirements"></a> System Requirements
 The Laravel framework has a few system requirements. You need to make sure your local server server (XAMPP or WAMP) 
