@@ -32,6 +32,10 @@
  * Other contextual keys may be added
 **/
 
+Route::get('/', function () {
+    return redirect()->route('_app.routes');
+});
+
 //for troubleshooting purposes
 if(config('app.env')=='local' or config('app.debug'))
 {
@@ -52,6 +56,25 @@ if(config('app.env')=='local' or config('app.debug'))
         }]);
     });
 }
+
+//-------------AUTHENTICATION, REGISTRATION & PASSWORD RESET ROUES-----------------//
+Route::group(['as'=>'auth.', 'namespace'=>'Auth', 'middleware'=>['m'=>'guest'] ], function ()
+{
+    // Authentication Routes...
+    Route::get('login', ['as' => 'login', 'uses' => 'LoginController@showLoginForm']);
+    Route::post('login', ['as' => 'login', 'uses' => 'LoginController@login']);
+    Route::post('logout', ['as' => 'logout', 'uses' => 'LoginController@logout'])->middleware( ['m'=>'auth'] );
+
+    // Registration Routes...
+    Route::get('register', ['as' => 'register', 'uses' => 'RegisterController@showRegistrationForm']);
+    Route::post('register', ['as' => 'register', 'uses' => 'RegisterController@register']);
+
+    // Password Reset Routes...
+    Route::get('password/reset', ['as' => 'password.reset', 'uses' => 'ForgotPasswordController@showLinkRequestForm']);
+    Route::post('password/email', ['as' => 'password.email', 'uses' => 'ForgotPasswordController@sendResetLinkEmail']);
+    Route::get('password/reset/{token}', ['as' => 'password.reset', 'uses' => 'ResetPasswordController@showResetForm']);
+    Route::post('password/reset', ['as'=>'password.reset','uses' => 'ResetPasswordController@reset']);
+});
 
 //-------------AUTHENTICATION, REGISTRATION & PASSWORD RESET ROUES-----------------//
 Route::group(['as'=>'auth.', 'namespace'=>'Auth', 'middleware'=>['m'=>'guest'] ], function ()

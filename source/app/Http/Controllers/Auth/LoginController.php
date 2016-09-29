@@ -40,7 +40,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->redirectTo = request()->has('redirectTo') ? request()->input('redirectTo') : url()->route('account.index');
+        $this->redirectTo = request()->has('redirectTo') ? request()->input('redirectTo') : redirectIfAuthSuccess();
     }
 
     /**

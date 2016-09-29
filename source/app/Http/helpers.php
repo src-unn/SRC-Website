@@ -13,6 +13,11 @@ define('USER_ROLE_SUPER_ADMIN', User::ROLE_SUPER_ADMIN);
 define('USER_ROLE_CONTENT_ADMIN', User::ROLE_CONTENT_ADMIN);
 define('USER_ROLE_ACADEMIC', User::ROLE_ACADEMIC);
 
+function redirectIfAuthSuccess()
+{
+    return url('/');
+}
+
 /**
  * @param string $action        Controller@method
  * @param string $namespace     No backslash at the beginning or end
