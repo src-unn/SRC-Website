@@ -50,7 +50,7 @@ See [CONTRIBUTORS.txt](CONTRIBUTORS.txt) for a list of code contributors.
 ###<a name="design"></a> Design and Implementation
 Design choices of implementation techniques for this project have been heavily influenced by the goals
 set for the project, time and other resource constraints. See detailed design docs. and models 
-[here](docs/README.md).
+[here](design/README.md).
 
 The core (backend) of the website is built on the Laravel PHP Framework (starting with v5.3~).
 See the [source](source/README.md) directory for more details.
