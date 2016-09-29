@@ -28,38 +28,39 @@
  * A Controller method should return an array with these mandatory keys
  *  a.  status      //boolean
  *  b.  message     //string
- *  c.  data        //array
  * Other contextual keys may be added
-**/
+ **/
 
 //for troubleshooting purposes
-if(config('app.env')=='local' or config('app.debug'))
-{
-    $view_dir = '_app.';
-    Route::group(['as'=>'_app.'], function () use ($view_dir)
-    {
-        Route::get('/routes', ['as'=>'routes', 'uses'=>function () use ($view_dir)
-        {
-            return view($view_dir.'routes', ['routes'=>Route::getRoutes(), 'text'=>"App. Routes! &lt;/&gt;, <br/>Work in progress..."]);
-        }]);
-        Route::get('/console', ['as'=>'console', 'uses'=>function () use ($view_dir)
-        {
-            /**
-             * TODO
-             * GUI Interface for running laravel artisan and other console commands
-             */
-            return view($view_dir.'routes', ['routes'=>Route::getRoutes(), 'text'=>"App. Routes! &lt;/&gt;, <br/>Work in progress..."]);
-        }]);
+if (config('app.env') == 'local' or config('app.debug')) {
+
+    Route::group(['as' => '_app.', 'namespace' => 'Site'], function () {
+        Route::get('/routes', ['as' => 'routes', 'uses' => 'SiteController@showAppRoutes']);
+        Route::get('/console', ['as' => 'console', 'uses' => 'SiteController@showAppConsole']);
     });
 }
 
+//------------SITE'S PUBLIC PAGES----------------//
+Route::group(['as' => 'pub.', 'namespace' => 'Site'], function () {
+
+    Route::get('/', ['as' => 'home', 'uses' => 'SiteController@showHomePage']);
+    Route::get('event', ['as' => 'event', 'uses' => 'SiteController@showEventCalendar']);
+    Route::get('event/{slug}', ['as' => 'event_info', 'uses' => 'SiteController@showEventInfo']);
+    Route::get('gallery', ['as' => 'gallery', 'uses' => 'SiteController@showMediaGallery']);
+    Route::get('gallery/{slug}', ['as' => 'gallery_album', 'uses' => 'SiteController@showMediaAlbum']);
+    Route::get('project', ['as' => 'project', 'uses' => 'SiteController@showProjectGallery']);
+    Route::get('project/{slug}', ['as' => 'project', 'uses' => 'SiteController@showProjectInfo']);
+    Route::get('contact', ['as' => 'contact', 'uses' => 'SiteController@showContactPage']);
+    Route::get('p/{slug}', ['as' => 'page', 'uses' => 'SiteController@resolvePage']);
+});
+
 //-------------AUTHENTICATION, REGISTRATION & PASSWORD RESET ROUES-----------------//
-Route::group(['as'=>'auth.', 'namespace'=>'Auth', 'middleware'=>['m'=>'guest'] ], function ()
-{
+Route::group(['as' => 'auth.', 'namespace' => 'Auth', 'middleware' => ['m' => 'guest']], function () {
+
     // Authentication Routes...
     Route::get('login', ['as' => 'login', 'uses' => 'LoginController@showLoginForm']);
     Route::post('login', ['as' => 'login', 'uses' => 'LoginController@login']);
-    Route::post('logout', ['as' => 'logout', 'uses' => 'LoginController@logout'])->middleware( ['m'=>'auth'] );
+    Route::post('logout', ['as' => 'logout', 'uses' => 'LoginController@logout'])->middleware(['m' => 'auth']);
 
     // Registration Routes...
     Route::get('register', ['as' => 'register', 'uses' => 'RegisterController@showRegistrationForm']);
@@ -69,5 +70,6 @@ Route::group(['as'=>'auth.', 'namespace'=>'Auth', 'middleware'=>['m'=>'guest'] ]
     Route::get('password/reset', ['as' => 'password.reset', 'uses' => 'ForgotPasswordController@showLinkRequestForm']);
     Route::post('password/email', ['as' => 'password.email', 'uses' => 'ForgotPasswordController@sendResetLinkEmail']);
     Route::get('password/reset/{token}', ['as' => 'password.reset', 'uses' => 'ResetPasswordController@showResetForm']);
-    Route::post('password/reset', ['as'=>'password.reset','uses' => 'ResetPasswordController@reset']);
+    Route::post('password/reset', ['as' => 'password.reset', 'uses' => 'ResetPasswordController@reset']);
 });
+
