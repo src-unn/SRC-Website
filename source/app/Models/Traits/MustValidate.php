@@ -9,5 +9,5 @@ namespace App\Models\Traits;
 
 trait MustValidate
 {
-    public abstract static function validator();
+    public static function validator(){}
 }
