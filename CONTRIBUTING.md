@@ -17,7 +17,7 @@ We promise to extend courtesy and respect to everyone involved in this project r
 
 If any member of the community violates this code of conduct, the maintainers of the SRC-Website may take action, removing issues, comments, and PRs or blocking accounts as deemed appropriate.
 
-If you are subject to or witness unacceptable behavior, or have any other concerns, please drop us a line at [http://sdc.com.ng](http://sdc.com.ng)
+If you are subject to or witness unacceptable behavior, or have any other concerns, please drop us a line at [http://srcng.com](http://srcng.com)
 
 ## <a name="issue"></a> Found an Issue?
 If you find a bug in the source code, a mistake in the documentation or a feature not working as expected, you can help us by

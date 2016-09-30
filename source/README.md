@@ -46,7 +46,7 @@ So, before using Laravel, make sure you have Composer installed on your machine.
 * Navigate to the project directory **project-clone/source/** and run the following command:
 
     ```shell
-    php composer update
+    composer update
     ```
 
 * After a successful update, make a copy of /source/.env.example and rename it to .env using your IDE.
