@@ -20,6 +20,18 @@ trait SoftDeletes
 
     /**
      * Set dates property to enable soft-deleting
+     *
+     * @param array $attributes
      */
-    protected $dates = ['deleted_at'];
+    public function __construct(array $attributes = [])
+    {
+        /**
+         * Set dates property to enable soft-deleting
+         */
+        $this->dates = ['deleted_at'];
+        /**
+         * call the constructor of the inheriting class
+         */
+        parent::__construct($attributes);
+    }
 }
