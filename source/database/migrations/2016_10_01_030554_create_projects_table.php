@@ -20,10 +20,10 @@ class CreateProjectsTable extends Migration
             $table->text('description');
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
-            $table->string('title',10);
+            $table->string('type',10);
             $table->boolean('status');
             $table->integer('progress', 3);
-            $table->integer('created_by')->unsigned()
+            $table->integer('created_by')->unsigned();
 
             $table->softDeletes();
             $table->nullableTimestamps();
