@@ -14,7 +14,7 @@ class CreateTeamsUsersTable extends Migration
     public function up()
     {
 
-        Schema::create('teams_users', function (Blueprint $table) {
+        Schema::create('team_user', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('team_id')->unsigned();
             $table->integer('user_id')->unsigned();
@@ -34,6 +34,6 @@ class CreateTeamsUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('teams_users');
+        Schema::drop('team_user');
     }
 }

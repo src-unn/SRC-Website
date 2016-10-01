@@ -13,7 +13,7 @@ class CreateTeamsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sponsors', function (Blueprint $table) {
+        Schema::create('teams', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 30)->unique();
             $table->text('description', 255);
@@ -31,6 +31,6 @@ class CreateTeamsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('teams');
     }
 }
