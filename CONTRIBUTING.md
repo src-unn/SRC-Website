@@ -51,8 +51,7 @@ Before you submit your pull request consider the following guidelines:
 
 * Search [GitHub](https://github.com/src-unn/SRC-Website/pulls) for an open or closed Pull Request
   that relates to your submission. You don't want to duplicate effort.
-* Please not that you must be an acknowledged member of the SRC, or a recognized contributor, before sending pull
-  requests. We cannot accept code without this.
+* Please note that you must be an acknowledged member of the SRC-WebDev Team, or a recognized contributor, with write-access to the repository before you can push your commits.
 * Make your changes in a new git branch:
 
      ```shell
@@ -71,28 +70,27 @@ Before you submit your pull request consider the following guidelines:
     git push origin my-feature-branch-name
     ```
 
-* In GitHub, send a pull request to `SRC-Website:master`.
+* In GitHub, send a pull request to `src-unn:master`.
 * If we suggest changes then:
   * Make the required updates.
   * Re-run the SRC-Website test cases to ensure tests are still passing.
-  * Rebase your branch and force push to your GitHub repository (this will update your Pull Request):
+  * Rebase your local branch (if it is behind the `master` branch) and force push to `origin` (this will update your Pull Request):
 
     ```shell
     git rebase master -i
-    git push origin my-fix-branch -f
+    git push origin my-feature-branch-name -f
     ```
 
 That's it! Thank you for your contribution!
 
 #### After your pull request is merged
 
-After your pull request is merged, you can safely delete your branch (my-feature-branch-name) and pull the changes
-from the main (upstream) repository:
+After your pull request is merged, you can safely delete your branch (`my-feature-branch-name`) and update your local `master` branch by pulling from `origin:master`:
 
 * Delete the remote branch on GitHub either through the GitHub web UI or your local shell as follows:
 
     ```shell
-    git push origin --delete my-fix-branch
+    git push origin --delete my-feature-branch-name
     ```
 
 * Check out the master branch:
@@ -107,10 +105,12 @@ from the main (upstream) repository:
     git branch -D my-feature-branch-name
     ```
 
-* Update your master with the latest upstream version:
+* Update your master with the latest `origin:master` version:
 
     ```shell
-    git pull --ff upstream master
+    git pull --ff origin master
     ```
 
 *This guide was inspired by the [Material Design Lite contribution guidelines](https://github.com/google/material-design-lite/blob/mdl-1.x/CONTRIBUTING.md).*
+
+*Refer to Feature-Branch Workflow Documentation at [Atlassian Git Tutorials](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow) for illustrations*
