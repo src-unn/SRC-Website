@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateTeamsTable extends Migration
 {
@@ -15,12 +15,14 @@ class CreateTeamsTable extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 30)->unique();
-            $table->text('description', 255);
-
-            $table->softDeletes();
+            $table->string('name', 190)->unique();
+            $table->text('description');
             $table->nullableTimestamps();
+            $table->softDeletes();
 
+            $table->engine = 'InnoDB';
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_unicode_ci';
         });
     }
 

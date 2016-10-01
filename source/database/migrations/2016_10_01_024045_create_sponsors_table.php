@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateSponsorsTable extends Migration
 {
@@ -18,10 +18,12 @@ class CreateSponsorsTable extends Migration
             $table->string('name', 255);
             $table->string('website', 255)->nullable();
             $table->string('photo', 255)->nullable();
-
-            $table->softDeletes();
             $table->nullableTimestamps();
+            $table->softDeletes();
 
+            $table->engine = 'InnoDB';
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_unicode_ci';
         });
     }
 
