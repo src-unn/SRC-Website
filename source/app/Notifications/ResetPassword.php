@@ -1,16 +1,16 @@
 <?php
 /**
- * Project: academy.zeesaa.com
+ * Project: srcng.com
  * Author:  Chukwuemeka Nwobodo (jcnwobodo@gmail.com)
  * Date:    9/24/2016
  * Time:    9:09 PM
  **/
 namespace App\Notifications;
 
-use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class ResetPasswordNotification extends ResetPassword
+class ResetPassword extends ResetPasswordNotification
 {
     /**
      * Build the mail representation of the notification.

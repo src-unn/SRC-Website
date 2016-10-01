@@ -5,6 +5,7 @@
  * Date:    8/8/2016
  * Time:    11:45 AM
  **/
+
 namespace App\Models;
 
 use App\Models\Traits\NonValidating;
@@ -30,7 +31,7 @@ class Role extends Model
      *
      * @return mixed
      */
-    public static function _findByName($name)
+    public static function findByName($name)
     {
         return self::where('name', $name)->first();
     }
