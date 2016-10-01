@@ -22,7 +22,7 @@ class CreateProjectsTable extends Migration
             $table->date('end_date')->nullable();
             $table->string('type',10);
             $table->boolean('status');
-            $table->integer('progress', 3);
+            $table->integer('progress');
             $table->integer('created_by')->unsigned();
 
             $table->softDeletes();
