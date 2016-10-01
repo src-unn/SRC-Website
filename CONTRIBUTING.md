@@ -87,12 +87,6 @@ That's it! Thank you for your contribution!
 
 After your pull request is merged, you can safely delete your branch (`my-feature-branch-name`) and update your local `master` branch by pulling from `origin:master`:
 
-* Delete the remote branch on GitHub either through the GitHub web UI or your local shell as follows:
-
-    ```shell
-    git push origin --delete my-feature-branch-name
-    ```
-
 * Check out the master branch:
 
     ```shell
@@ -103,6 +97,12 @@ After your pull request is merged, you can safely delete your branch (`my-featur
 
     ```shell
     git branch -D my-feature-branch-name
+    ```
+
+* Delete the remote branch on GitHub either through the GitHub web UI or your local shell as follows:
+
+    ```shell
+    git push origin --delete my-feature-branch-name
     ```
 
 * Update your master with the latest `origin:master` version:
