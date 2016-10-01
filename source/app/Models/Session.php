@@ -5,6 +5,7 @@
  * Date:    9/12/2016
  * Time:    5:04 AM
  **/
+
 namespace App\Models;
 
 use App\Models\Traits\NonValidating;

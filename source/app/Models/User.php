@@ -1,11 +1,11 @@
 <?php
 namespace App\Models;
 
-use App\Models\Traits\MustValidate;
+use App\Models\Traits\Validates;
 use App\Models\Traits\SoftDeletes;
-use App\Notifications\ResetPasswordNotification;
-use Illuminate\Notifications\Notifiable;
+use App\Notifications\ResetPassword as ResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * Class User
@@ -13,143 +13,93 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  */
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes, MustValidate;
+    use Notifiable, SoftDeletes, Validates;
 
     protected $hidden = ['password', 'remember_token'];
-    //protected $dates = ['deleted_at'];
+
     const STATUS_ACTIVE   = 1;
     const STATUS_INACTIVE = 0;
 
     const ROLE_SUPER_ADMIN   = 'super_admin';
     const ROLE_CONTENT_ADMIN = 'content_admin';
-    const ROLE_ACADEMIC      = 'academic';
+    const ROLE_MEMBER        = 'member';
 
     /**
+     * Roles that this user can act as, M:N Rel.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function roles()
     {
-        return $this->belongsToMany('App\Models\Role')->withTimestamps();
+        return $this->belongsToMany(Role::class)->withTimestamps();
     }
 
     /**
+     * Tracked user sessions, 1:M Rel.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function sessions()
     {
-        return $this->hasMany('App\Models\Session');
+        return $this->hasMany(Session::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function library_entries()
-    {
-        return $this->belongsToMany('App\Entry')->withTimestamps();
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function favorite_authors()
-    {
-        return $this->belongsToMany('App\Entry')->withTimestamps();
-    }
-
-    /**
+     * Events created by this user, 1:M Rel.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function uploaded_entries()
+    public function created_events()
     {
-        return $this->hasMany('App\Models\Entry', 'user_id');
+        return $this->hasMany(Event::class, 'created_by');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function viewed_entries()
-    {
-        return $this->belongsToMany('App\Models\Entry', 'views', 'user_id', 'viewable_id')->withTimestamps();
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function viewed_authors()
-    {
-        return $this->belongsToMany('App\Models\Author', 'views', 'user_id', 'viewable_id')->withTimestamps();
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function rated_entries()
-    {
-        return $this->belongsToMany('App\Models\Entry', 'ratings', 'user_id', 'ratable_id')->withTimestamps();
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function rated_authors()
-    {
-        return $this->belongsToMany('App\Models\Author', 'ratings', 'user_id', 'ratable_id')->withTimestamps();
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function reviewed_entries()
-    {
-        return $this->belongsToMany('App\Models\Entry', 'reviews', 'user_id', 'reviewable_id')->withTimestamps();
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function reviewed_authors()
-    {
-        return $this->belongsToMany('App\Models\Author', 'reviews', 'user_id', 'reviewable_id')->withTimestamps();
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function reported_entries()
-    {
-        return $this->belongsToMany('App\Models\Entry', 'reports', 'user_id', 'reportable_id')->withTimestamps();
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function reported_authors()
-    {
-        return $this->belongsToMany('App\Models\Author', 'reports', 'user_id', 'reportable_id')->withTimestamps();
-    }
-
-    /**
+     * Projects created by this user, 1:M Rel.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function created_authors()
+    public function created_projects()
     {
-        return $this->hasMany('App\Models\Author');
+        return $this->hasMany(Project::class, 'created_by');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Projects for which this user is assigned to, M:N Rel.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function created_institutions()
+    public function assigned_projects()
     {
-        return $this->hasMany('App\Models\Institution');
+        return $this->belongsToMany(Project::class)->withTimestamps();
     }
 
     /**
+     * Teams to which this user belongs, M:N Rel.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class)->withTimestamps();
+    }
+
+    /**
+     * @return array
+     */
+    public function getNamesArr()
+    {
+        return ['first_name' => $this->first_name, 'middle_name' => $this->middle_name, 'last_name' => $this->last_name];
+    }
+
+    /**
+     * @param string $separator
+     *
      * @return string
      */
-    public function _names()
+    public function getNamesStr($separator = ' ')
     {
-        return ($this->first_name." ".$this->middle_name." ".$this->last_name);
+        return implode($separator, $this->getNamesArr());
     }
 
     /**
@@ -157,7 +107,7 @@ class User extends Authenticatable
      *
      * @return mixed
      */
-    public function _hasRole(Role $role)
+    public function hasRole(Role $role)
     {
         return $this->roles->contains($role);
     }
@@ -165,7 +115,7 @@ class User extends Authenticatable
     /**
      * @return bool
      */
-    public function _isSuperAdmin()
+    public function isSuperAdmin()
     {
         return in_array($this::ROLE_SUPER_ADMIN, $this->roles->pluck('name')->all());
     }
@@ -173,42 +123,48 @@ class User extends Authenticatable
     /**
      * @return bool
      */
-    public function _isContentAdmin()
+    public function isContentAdmin()
     {
         return in_array($this::ROLE_CONTENT_ADMIN, $this->roles->pluck('name')->all());
     }
 
     /**
+     * This method is mostly redundant at the moment since all users are members.
+     * However, there could be a situation very soon where we have users that are not members, e.g. Client
+     *
      * @return bool
      */
-    public function _isAcademic()
+    public function isMember()
     {
-        return in_array($this::ROLE_ACADEMIC, $this->roles->pluck('name')->all());
+        return in_array($this::ROLE_MEMBER, $this->roles->pluck('name')->all());
     }
 
     /**
-     * @param $email
+     * @param string $email
      *
-     * @return mixed
+     * @return null | User
      */
-    public static function _findByEmail($email)
+    public static function findByEmail($email)
     {
         return self::where('email', $email)->first();
     }
 
     /**
-     * @param $phone
+     * @param string $phone
      *
-     * @return mixed
+     * @return null | User
      */
-    public static function _findByPhone($phone)
+    public static function findByPhone($phone)
     {
         return self::where('phone', $phone)->first();
     }
 
-    public static function validator()
+    /**
+     *
+     */
+    protected function validator()
     {
-        return null;
+        // TODO: Implement validator() method.
     }
 
     /**

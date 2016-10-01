@@ -1,13 +1,24 @@
 <?php
 /**
- * Project: academy.zeesaa.com
+ * Project: srcng.com
  * Author:  Chukwuemeka Nwobodo (jcnwobodo@gmail.com)
- * Date:    9/19/2016
- * Time:    4:51 AM
+ * Date:    10/1/2016
+ * Time:    3:08 AM
  **/
+
 namespace App\Models\Traits;
 
+/**
+ * Class NonValidating
+ * @package App\Models\Traits
+ */
 trait NonValidating
 {
-    public static function validator() { return null; }
+    /**
+     * @return null
+     */
+    protected function validator()
+    {
+        return null;
+    }
 }
