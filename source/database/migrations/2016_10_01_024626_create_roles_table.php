@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateRolesTable extends Migration
 {
@@ -17,10 +17,12 @@ class CreateRolesTable extends Migration
             $table->increments('id');
             $table->string('name', 20)->unique();
             $table->string('label', 30);
-
-            $table->softDeletes();
             $table->nullableTimestamps();
+            $table->softDeletes();
 
+            $table->engine = 'InnoDB';
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_unicode_ci';
         });
     }
 

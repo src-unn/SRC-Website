@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateUsersTable extends Migration
 {
@@ -18,14 +18,16 @@ class CreateUsersTable extends Migration
             $table->string('first_name', 255);
             $table->string('middle_name', 255)->nullable();
             $table->string('last_name', 255);
-            $table->string('email', 255)->unique();
-            $table->string('phone')->nullable();
+            $table->string('email', 190)->unique();
+            $table->string('phone', 15)->unique();
             $table->boolean('status');
             $table->string('password', 255);
-
-            $table->softDeletes();
             $table->nullableTimestamps();
+            $table->softDeletes();
 
+            $table->engine = 'InnoDB';
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_unicode_ci';
         });
     }
 
