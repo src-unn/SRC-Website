@@ -45,7 +45,7 @@
             '<tr>
                 <td>'.$route->getName().'</td>
                 <td>'.implode(', ', $methods).'</td>
-                <td><a href="'.$route->getPath().'" target="_new">'.$route->getPath().'</td>
+                <td><a href="'.url($route->uri()).'" target="_new">'.$route->getPath().'</td>
                 <td>'.$route->getActionName().'</td>
                 <td>'.implode(', ', $route->gatherMiddleware()).'</td>
             </tr>';
