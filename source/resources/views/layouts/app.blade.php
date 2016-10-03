@@ -18,9 +18,9 @@
     <!-- Styles -->
     <link rel="icon" href="{{ url('icon.png') }}">
     @if(config('app.env')=='production')
-        <link href="{{url('roboto.font.gstatic.css')}}" rel="stylesheet">
+        <link href="{{url('css/roboto.font.gstatic.css')}}" rel="stylesheet">
     @else
-        <link href="{{url('roboto.font.local.css')}}" rel="stylesheet">
+        <link href="{{url('css/roboto.font.local.css')}}" rel="stylesheet">
     @endif
     <link href="{{url('css/material.icons.css')}}" rel="stylesheet">
     <link href="{{url('css/material.min.css')}}" rel="stylesheet">
