@@ -32,6 +32,13 @@ class SiteController extends Controller
         return view('pages.home', $data);
     }
 
+    public function showClubInfo()
+    {
+        $data = [];
+
+        return view('pages.club_info', $data);
+    }
+
     public function showEventCalendar()
     {
         $data = [];
@@ -78,7 +85,7 @@ class SiteController extends Controller
     {
         $data = [];
 
-        return view('pages.contact_form', $data);
+        return view('pages.contact_page', $data);
     }
 
     public function resolvePage($slug)
@@ -88,4 +95,8 @@ class SiteController extends Controller
         return view('pages.generic', $data);
     }
 
+    public function redirectToBlog()
+    {
+        $this->showHomePage();
+    }
 }

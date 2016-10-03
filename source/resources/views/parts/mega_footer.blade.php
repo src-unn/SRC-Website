@@ -15,10 +15,10 @@
             <h1 class="mdl-mega-footer__heading">Club</h1>
             <ul class="mdl-mega-footer__link-list">
                 <li><a href="#">About SRC</a></li>
-                <li><a href="#">Our Mission</a></li>
-                <li><a href="#">Code of Conduct</a></li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Contact us</a></li>
+            </ul>
+            <ul class="mdl-mega-footer__link-list">
+                <li><a href="{{url()->route('auth.register')}}">Register</a></li>
+                <li><a href="{{url()->route('auth.login')}}">Login</a></li>
             </ul>
         </div>
 
@@ -26,10 +26,8 @@
             <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
             <h1 class="mdl-mega-footer__heading">Resources</h1>
             <ul class="mdl-mega-footer__link-list">
-                <li><a href="#">Specs</a></li>
-                <li><a href="#">Tools</a></li>
-                <li><a href="#">Patterns</a></li>
-                <li><a href="#">Publications</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Code of Conduct</a></li>
             </ul>
         </div>
 
@@ -41,6 +39,7 @@
                 <li><a href="#">[LOGO] Slack</a></li>
                 <li><a href="#">[LOGO] FreeCodeCamp</a></li>
                 <li><a href="#">[LOGO] Google+</a></li>
+                <li><a href="#"><i class="material-icons" style="font-size: inherit;">mail</i>Contact us</a></li>
             </ul>
         </div>
 

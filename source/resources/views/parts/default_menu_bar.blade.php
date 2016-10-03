@@ -18,7 +18,7 @@
             <a class="mdl-navigation__link" href="{{url()->route('pub.gallery')}}">Gallery</a>
             <a class="mdl-navigation__link" href="{{url()->route('pub.project')}}">Projects</a>
             <a class="mdl-navigation__link" href="{{url()->route('pub.project')}}">Contact</a>
-            <a class="mdl-navigation__link" href="{{url()->route('pub.home')}}">Blog</a>
+            <a class="mdl-navigation__link" href="{{url()->route('pub.blog')}}">Blog</a>
         </nav>
     </div>
 </header>

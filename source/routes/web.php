@@ -44,14 +44,16 @@ if (config('app.env') == 'local' or config('app.debug')) {
 Route::group(['as' => 'pub.', 'namespace' => 'Site'], function () {
 
     Route::get('/', ['as' => 'home', 'uses' => 'SiteController@showHomePage']);
+    Route::get('club', ['as' => 'club', 'uses' => 'SiteController@showClubInfo']);
     Route::get('event', ['as' => 'event', 'uses' => 'SiteController@showEventCalendar']);
     Route::get('event/{slug}', ['as' => 'event_info', 'uses' => 'SiteController@showEventInfo']);
     Route::get('gallery', ['as' => 'gallery', 'uses' => 'SiteController@showMediaGallery']);
     Route::get('gallery/{slug}', ['as' => 'gallery_album', 'uses' => 'SiteController@showMediaAlbum']);
     Route::get('project', ['as' => 'project', 'uses' => 'SiteController@showProjectGallery']);
-    Route::get('project/{slug}', ['as' => 'project', 'uses' => 'SiteController@showProjectInfo']);
+    Route::get('project/{slug}', ['as' => 'project.view', 'uses' => 'SiteController@showProjectInfo']);
     Route::get('contact', ['as' => 'contact', 'uses' => 'SiteController@showContactPage']);
     Route::get('p/{slug}', ['as' => 'page', 'uses' => 'SiteController@resolvePage']);
+    Route::get('blog', ['as' => 'blog', 'uses' => 'SiteController@redirectToBlog']);
 });
 
 //-------------AUTHENTICATION, REGISTRATION & PASSWORD RESET ROUES-----------------//
