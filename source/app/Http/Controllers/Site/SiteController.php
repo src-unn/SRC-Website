@@ -92,7 +92,7 @@ class SiteController extends Controller
     {
         $data['slug'] = $slug;
 
-        return view('pages.generic', $data);
+        return view('pages.generic_page', $data);
     }
 
     public function redirectToBlog()
