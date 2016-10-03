@@ -9,16 +9,15 @@
 @extends('layouts.app')
 
 @section('body_markup')
-    <!-- Uses a transparent header that draws on top of the layout's background -->
-
-    <div class="mdl-layout mdl-js-layout mdl-layout__header--waterfall mdl-layout__header--transparent">
+    <div class="mdl-layout mdl-js-layout">
 
         @include('parts.default_menu_bar')
 
         <main class="mdl-layout__content">
             @yield('content')
+
+            @include('parts.mega_footer')
         </main>
 
-        @include('parts.mega_footer')
     </div>
 @endsection

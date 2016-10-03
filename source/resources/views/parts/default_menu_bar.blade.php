@@ -6,7 +6,7 @@
  * Time:    2:53 AM
  **/
 ?>
-<header class="mdl-layout__header">
+<header class="mdl-layout__header mdl-layout__header--waterfall">
     <div class="mdl-layout-icon"></div>
     <div class="mdl-layout__header-row">
         <span class="mdl-layout__title">[[SRC-LOGO]]</span>
@@ -17,7 +17,7 @@
             <a class="mdl-navigation__link" href="{{url()->route('pub.event')}}">Events</a>
             <a class="mdl-navigation__link" href="{{url()->route('pub.gallery')}}">Gallery</a>
             <a class="mdl-navigation__link" href="{{url()->route('pub.project')}}">Projects</a>
-            <a class="mdl-navigation__link" href="{{url()->route('pub.project')}}">Contact</a>
+            <a class="mdl-navigation__link" href="{{url()->route('pub.contact')}}">Contact</a>
             <a class="mdl-navigation__link" href="{{url()->route('pub.blog')}}">Blog</a>
         </nav>
     </div>
@@ -31,7 +31,7 @@
         <a class="mdl-navigation__link" href="{{url()->route('pub.event')}}"><i class="material-icons">event</i> Events</a>
         <a class="mdl-navigation__link" href="{{url()->route('pub.gallery')}}"><i class="material-icons">perm_media</i> Gallery</a>
         <a class="mdl-navigation__link" href="{{url()->route('pub.project')}}"><i class="material-icons">developer_mode</i> Projects</a>
-        <a class="mdl-navigation__link" href="{{url()->route('pub.project')}}"><i class="material-icons">feedback</i> Contact</a>
+        <a class="mdl-navigation__link" href="{{url()->route('pub.contact')}}"><i class="material-icons">feedback</i> Contact</a>
         <a class="mdl-navigation__link" href="{{url()->route('pub.home')}}"><i class="material-icons">code</i> Blog</a>
     </nav>
     <nav class="mdl-navigation">
