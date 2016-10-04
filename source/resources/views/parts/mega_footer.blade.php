@@ -57,12 +57,15 @@
     </div>
 
     <div class="mdl-mega-footer__bottom-section">
-        <div class="mdl-logo">[[SRC-LOGO]]</div>
-        <div class="m"></div>
-        <ul class="mdl-mega-footer__link-list">
-            <li><a href="#">Help</a></li>
-            <li><a href="#">Privacy & Terms</a></li>
-        </ul>
+        <div class="mdl-mega-footer__left-section">
+            <div class="mdl-logo">[[SRC-LOGO]]</div>
+        </div>
+        <div class="mdl-mega-footer__right-section">
+            <ul class="mdl-mini-footer__link-list">
+                <li><a href="#">Help</a></li>
+                <li><a href="#">Privacy & Terms</a></li>
+            </ul>
+        </div>
     </div>
 
 </footer>

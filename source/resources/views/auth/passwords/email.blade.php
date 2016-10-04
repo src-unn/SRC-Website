@@ -1,47 +1,65 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
-<!-- Main Content -->
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    <div class="section">
+        <div class="valign-wrapper mh-75vh">
+            <div class="container valign">
+                <div class="row">
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
+                    <div class="col l6 offset-l0 m10 offset-m1 s10 offset-s1">
+                        <div class="row center-align">
+                            <h4>No Worries</h4>
+                            <p class="font-bold">
+                                We all forget sometimes...
+                            </p>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="row">
+                            <div class="col s12">
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="col l5 offset-l1 m10 offset-m1 s10 offset-s1 valign white z-depth-half" role="form" method="POST"
+                          action="{{ url()->route('auth.password.email') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                        <div class="row">
+                            <div class="col s12">
+                                <h6 class="font-bold">Get a Password Reset Link</h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="email" name="email" type="email" class="validate">
+                                <label for="email">E-Mail Address</label>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                        <div class="row">
+                            <div class="input-field col s12 right-align">
+                                <button type="submit" class="btn z-depth-half center">
                                     Send Password Reset Link
                                 </button>
                             </div>
                         </div>
+                        <div class="row divider"></div>
+                        <div class="row center-align">
+                            <div class="col s6">
+                                <a href="{{ url()->route('auth.login') }}">
+                                    Log In
+                                </a>
+                            </div>
+                            <div class="col s6">
+                                <a href="{{ url()->route('auth.register') }}">
+                                    Sign Up
+                                </a>
+                            </div>
+                        </div>
                     </form>
+
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

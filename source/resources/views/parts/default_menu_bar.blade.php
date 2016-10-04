@@ -35,7 +35,7 @@
         <a class="mdl-navigation__link" href="{{url()->route('pub.home')}}"><i class="material-icons">code</i> Blog</a>
     </nav>
     <nav class="mdl-navigation">
-        <p class="mdl-navigation__link mdl-typography--font-bold">Community</p>
+        <p class="mdl-navigation__link mdl-typography--font-bold"><i class="material-icons">device_hub</i> Community</p>
         <a class="mdl-navigation__link" href="#">[LOGO] GitHub</a>
         <a class="mdl-navigation__link" href="#">[LOGO] Slack</a>
         <a class="mdl-navigation__link" href="#">[LOGO] FreeCodeCamp</a>
