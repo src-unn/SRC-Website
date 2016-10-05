@@ -35,25 +35,25 @@
 if (config('app.env') == 'local' or config('app.debug')) {
 
     Route::group(['as' => '_app.', 'namespace' => 'Site'], function () {
-        Route::get('/routes', ['as' => 'routes', 'uses' => 'SiteController@showAppRoutes']);
-        Route::get('/console', ['as' => 'console', 'uses' => 'SiteController@showAppConsole']);
+        Route::get('/routes', ['as' => 'routes', 'uses' => 'WebController@showAppRoutes']);
+        Route::get('/console', ['as' => 'console', 'uses' => 'WebController@showAppConsole']);
     });
 }
 
 //------------SITE'S PUBLIC PAGES----------------//
-Route::group(['as' => 'pub.', 'namespace' => 'Site'], function () {
+Route::group(['as' => 'pub.'], function () {
 
-    Route::get('/', ['as' => 'home', 'uses' => 'SiteController@showHomePage']);
-    Route::get('club', ['as' => 'club', 'uses' => 'SiteController@showClubInfo']);
-    Route::get('event', ['as' => 'event', 'uses' => 'SiteController@showEventCalendar']);
-    Route::get('event/{slug}', ['as' => 'event_info', 'uses' => 'SiteController@showEventInfo']);
-    Route::get('gallery', ['as' => 'gallery', 'uses' => 'SiteController@showMediaGallery']);
-    Route::get('gallery/{slug}', ['as' => 'gallery_album', 'uses' => 'SiteController@showMediaAlbum']);
-    Route::get('project', ['as' => 'project', 'uses' => 'SiteController@showProjectGallery']);
-    Route::get('project/{slug}', ['as' => 'project.view', 'uses' => 'SiteController@showProjectInfo']);
-    Route::get('contact', ['as' => 'contact', 'uses' => 'SiteController@showContactPage']);
-    Route::get('p/{slug}', ['as' => 'page', 'uses' => 'SiteController@resolvePage']);
-    Route::get('blog', ['as' => 'blog', 'uses' => 'SiteController@redirectToBlog']);
+    Route::get('/', ['as' => 'home', 'uses' => 'WebController@showHomePage']);
+    Route::get('club', ['as' => 'club', 'uses' => 'WebController@showClubInfo']);
+    Route::get('event', ['as' => 'event', 'uses' => 'WebController@showEventCalendar']);
+    Route::get('event/{slug}', ['as' => 'event_info', 'uses' => 'WebController@showEventInfo']);
+    Route::get('gallery', ['as' => 'gallery', 'uses' => 'WebController@showMediaGallery']);
+    Route::get('gallery/{slug}', ['as' => 'gallery_album', 'uses' => 'WebController@showMediaAlbum']);
+    Route::get('project', ['as' => 'project', 'uses' => 'WebController@showProjectGallery']);
+    Route::get('project/{slug}', ['as' => 'project.view', 'uses' => 'WebController@showProjectInfo']);
+    Route::get('contact', ['as' => 'contact', 'uses' => 'WebController@showContactPage']);
+    Route::get('p/{slug}', ['as' => 'page', 'uses' => 'WebController@resolvePage']);
+    Route::get('blog', ['as' => 'blog', 'uses' => 'WebController@redirectToBlog']);
 });
 
 //-------------AUTHENTICATION, REGISTRATION & PASSWORD RESET ROUES-----------------//

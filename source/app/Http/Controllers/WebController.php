@@ -6,11 +6,9 @@
  * Time:    2:15 PM
  **/
 
-namespace App\Http\Controllers\Site;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-
-class SiteController extends Controller
+class WebController extends Controller
 {
     public function showAppRoutes()
     {
