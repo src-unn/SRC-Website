@@ -2,8 +2,8 @@
 /**
  * Project: srcng.com
  * Author:  Chukwuemeka Nwobodo (jcnwobodo@gmail.com)
- * Date:    10/3/2016
- * Time:    2:53 AM
+ * Date:    10/6/2016
+ * Time:    2:24 AM
  **/
 ?>
 <header class="mdl-layout__header mdl-layout__header--waterfall">
@@ -35,7 +35,7 @@
         <a class="mdl-navigation__link" href="{{url()->route('pub.home')}}"><i class="material-icons">code</i> Blog</a>
     </nav>
     <nav class="mdl-navigation">
-        <p class="mdl-navigation__link mdl-typography--font-bold"><i class="material-icons">device_hub</i> Community</p>
+        <p class="mdl-navigation__link mdl-typography--font-bold">Community</p>
         <a class="mdl-navigation__link" href="#">[LOGO] GitHub</a>
         <a class="mdl-navigation__link" href="#">[LOGO] Slack</a>
         <a class="mdl-navigation__link" href="#">[LOGO] FreeCodeCamp</a>
