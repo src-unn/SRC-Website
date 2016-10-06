@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 class WebController extends Controller
 {
+    //Tools
     public function showAppRoutes()
     {
         $data['routes'] = \Route::getRoutes();
@@ -23,6 +24,7 @@ class WebController extends Controller
         return $this->showAppRoutes();
     }
 
+    //Public Pages
     public function showHomePage()
     {
         $data = [];
@@ -96,5 +98,125 @@ class WebController extends Controller
     public function redirectToBlog()
     {
         $this->showHomePage();
+    }
+
+    //Admin Panel
+    public function showAdminDashboard()
+    {
+        $data = [];
+
+        return view('admin.', $data);
+    }
+
+    public function showEventManager()
+    {
+        $data = [];
+
+        return view('admin.', $data);
+    }
+
+    public function showEventEditor($id = null)
+    {
+        $data = [];
+
+        return view('admin.', $data);
+    }
+
+    public function showFileBrowser()
+    {
+        $data = [];
+
+        return view('admin.', $data);
+    }
+
+    public function showFileManager()
+    {
+        $data = [];
+
+        return view('admin.', $data);
+    }
+
+    public function showGalleryManager()
+    {
+        $data = [];
+
+        return view('admin.', $data);
+    }
+
+    public function showGalleryEditor()
+    {
+        $data = [];
+
+        return view('admin.', $data);
+    }
+
+    public function showPageManager()
+    {
+        $data = [];
+
+        return view('admin.', $data);
+    }
+
+    public function showPageEditor()
+    {
+        $data = [];
+
+        return view('admin.', $data);
+    }
+
+    public function showProjectManager()
+    {
+        $data = [];
+
+        return view('admin.', $data);
+    }
+
+    public function showProjectEditor()
+    {
+        $data = [];
+
+        return view('admin.', $data);
+    }
+
+    public function showPublicationManager()
+    {
+        $data = [];
+
+        return view('admin.', $data);
+    }
+
+    public function showPublicationEditor()
+    {
+        $data = [];
+
+        return view('admin.', $data);
+    }
+
+    public function showSponsorManager()
+    {
+        $data = [];
+
+        return view('admin.', $data);
+    }
+
+    public function showSponsorEditor()
+    {
+        $data = [];
+
+        return view('admin.', $data);
+    }
+
+    public function showTeamManager()
+    {
+        $data = [];
+
+        return view('admin.', $data);
+    }
+
+    public function showTeamEditor()
+    {
+        $data = [];
+
+        return view('admin.', $data);
     }
 }

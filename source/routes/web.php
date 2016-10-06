@@ -34,7 +34,7 @@
 //for troubleshooting purposes
 if (config('app.env') == 'local' or config('app.debug')) {
 
-    Route::group(['as' => '_app.', 'namespace' => 'Site'], function () {
+    Route::group(['as' => '_app.'], function () {
         Route::get('/routes', ['as' => 'routes', 'uses' => 'WebController@showAppRoutes']);
         Route::get('/console', ['as' => 'console', 'uses' => 'WebController@showAppConsole']);
     });
@@ -46,9 +46,9 @@ Route::group(['as' => 'pub.'], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'WebController@showHomePage']);
     Route::get('club', ['as' => 'club', 'uses' => 'WebController@showClubInfo']);
     Route::get('event', ['as' => 'event', 'uses' => 'WebController@showEventCalendar']);
-    Route::get('event/{slug}', ['as' => 'event_info', 'uses' => 'WebController@showEventInfo']);
+    Route::get('event/{slug}', ['as' => 'event.info', 'uses' => 'WebController@showEventInfo']);
     Route::get('gallery', ['as' => 'gallery', 'uses' => 'WebController@showMediaGallery']);
-    Route::get('gallery/{slug}', ['as' => 'gallery_album', 'uses' => 'WebController@showMediaAlbum']);
+    Route::get('gallery/{slug}', ['as' => 'gallery.album', 'uses' => 'WebController@showMediaAlbum']);
     Route::get('project', ['as' => 'project', 'uses' => 'WebController@showProjectGallery']);
     Route::get('project/{slug}', ['as' => 'project.view', 'uses' => 'WebController@showProjectInfo']);
     Route::get('contact', ['as' => 'contact', 'uses' => 'WebController@showContactPage']);
@@ -75,3 +75,59 @@ Route::group(['as' => 'auth.', 'namespace' => 'Auth', 'middleware' => ['m' => 'g
     Route::post('password/reset', ['as' => 'password.reset', 'uses' => 'ResetPasswordController@reset']);
 });
 
+//------------ADMIN PANEL PAGES----------------//
+Route::group(['as' => 'admin.', 'prefix'=>'admin', 'middleware'=>['auth']], function () {
+
+    //Dashboard
+    Route::get('/', ['as' => 'dashboard', 'uses' => 'WebController@showAdminDashboard']);
+
+    //Events
+    Route::get('event', ['as' => 'event.manager', 'uses' => 'WebController@showEventManager']);
+    Route::get('event/edit/{id?}', ['as' => 'event.editor', 'uses' => 'WebController@showEventEditor']);
+    Route::post('event/save', ['as' => 'event.save', 'uses' => 'Core\EventController@save']);
+    Route::post('event/delete', ['as' => 'event.delete', 'uses' => 'Core\EventController@delete']);
+
+    //Files
+    Route::get('file', ['as' => 'file.browser', 'uses' => 'WebController@showFileBrowser']);
+    Route::get('file/manage', ['as' => 'file.manager', 'uses' => 'WebController@showFileManager']);
+    Route::post('file/upload', ['as' => 'file.upload', 'uses' => 'Core\FileController@upload']);
+    Route::post('file/edit', ['as' => 'file.edit', 'uses' => 'Core\FileController@edit']);
+    Route::post('file/delete', ['as' => 'file.delete', 'uses' => 'Core\FileController@delete']);
+
+    //Gallery
+    Route::get('gallery', ['as' => 'gallery.manager', 'uses' => 'WebController@showGalleryManager']);
+    Route::get('gallery/edit/{id?}', ['as' => 'gallery.editor', 'uses' => 'WebController@showGalleryEditor']);
+    Route::post('gallery/save', ['as' => 'gallery.save', 'uses' => 'Core\GalleryController@save']);
+    Route::post('gallery/delete', ['as' => 'gallery.delete', 'uses' => 'Core\GalleryController@delete']);
+
+    //Pages
+    Route::get('page', ['as' => 'page.manage', 'uses' => 'WebController@showPageManager']);
+    Route::get('page/edit/{id?}', ['as' => 'page.editor', 'uses' => 'WebController@showPageEditor']);
+    Route::post('page/save', ['as' => 'page.save', 'uses' => 'Core\PageController@save']);
+    Route::post('page/delete', ['as' => 'page.delete', 'uses' => 'Core\PageController@delete']);
+
+    //Projects
+    Route::get('project', ['as' => 'project.manage', 'uses' => 'WebController@showProjectManager']);
+    Route::get('project/edit/{id?}', ['as' => 'project.editor', 'uses' => 'WebController@showProjectEditor']);
+    Route::post('project/save', ['as' => 'project.save', 'uses' => 'Core\ProjectController@save']);
+    Route::post('project/delete', ['as' => 'project.delete', 'uses' => 'Core\ProjectController@delete']);
+
+    //Publications
+    Route::get('publication', ['as' => 'publication.manage', 'uses' => 'WebController@showPublicationManager']);
+    Route::get('publication/edit/{id?}', ['as' => 'publication.editor', 'uses' => 'WebController@showPublicationEditor']);
+    Route::post('publication/save', ['as' => 'publication.save', 'uses' => 'Core\PublicationController@save']);
+    Route::post('publication/delete', ['as' => 'publication.delete', 'uses' => 'Core\PublicationController@delete']);
+
+    //Sponsors
+    Route::get('sponsor', ['as' => 'sponsor.manage', 'uses' => 'WebController@showSponsorManager']);
+    Route::get('sponsor/edit/{id?}', ['as' => 'sponsor.editor', 'uses' => 'WebController@showSponsorEditor']);
+    Route::post('sponsor/save', ['as' => 'sponsor.save', 'uses' => 'Core\SponsorController@save']);
+    Route::post('sponsor/delete', ['as' => 'sponsor.delete', 'uses' => 'Core\SponsorController@delete']);
+
+    //Teams
+    Route::get('team', ['as' => 'team.manage', 'uses' => 'WebController@showTeamManager']);
+    Route::get('team/edit/{id?}', ['as' => 'team.editor', 'uses' => 'WebController@showTeamEditor']);
+    Route::post('team/save', ['as' => 'team.save', 'uses' => 'Core\TeamController@save']);
+    Route::post('team/delete', ['as' => 'team.delete', 'uses' => 'Core\TeamController@delete']);
+
+});
