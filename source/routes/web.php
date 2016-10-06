@@ -76,7 +76,7 @@ Route::group(['as' => 'auth.', 'namespace' => 'Auth', 'middleware' => ['m' => 'g
 });
 
 //------------ADMIN PANEL PAGES----------------//
-Route::group(['as' => 'admin.', 'prefix'=>'admin', 'middleware'=>['auth']], function () {
+Route::group(['as' => 'admin.', 'prefix'=>'admin'/*, 'middleware'=>['auth']*/], function () {
 
     //Dashboard
     Route::get('/', ['as' => 'dashboard', 'uses' => 'WebController@showAdminDashboard']);
