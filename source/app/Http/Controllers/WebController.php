@@ -105,118 +105,118 @@ class WebController extends Controller
     {
         $data = [];
 
-        return view('admin.', $data);
+        return view('admin.dashboard', $data);
     }
 
     public function showEventManager()
     {
         $data = [];
 
-        return view('admin.', $data);
+        return view('admin.event_manager', $data);
     }
 
     public function showEventEditor($id = null)
     {
         $data = [];
 
-        return view('admin.', $data);
+        return view('admin.event_editor', $data);
     }
 
     public function showFileBrowser()
     {
         $data = [];
 
-        return view('admin.', $data);
+        return view('admin.file_browser', $data);
     }
 
     public function showFileManager()
     {
         $data = [];
 
-        return view('admin.', $data);
+        return view('admin.file_manager', $data);
     }
 
     public function showGalleryManager()
     {
         $data = [];
 
-        return view('admin.', $data);
+        return view('admin.gallery_manager', $data);
     }
 
     public function showGalleryEditor()
     {
         $data = [];
 
-        return view('admin.', $data);
+        return view('admin.gallery_editor', $data);
     }
 
     public function showPageManager()
     {
         $data = [];
 
-        return view('admin.', $data);
+        return view('admin.page_manager', $data);
     }
 
     public function showPageEditor()
     {
         $data = [];
 
-        return view('admin.', $data);
+        return view('admin.page_editor', $data);
     }
 
     public function showProjectManager()
     {
         $data = [];
 
-        return view('admin.', $data);
+        return view('admin.project_manager', $data);
     }
 
     public function showProjectEditor()
     {
         $data = [];
 
-        return view('admin.', $data);
+        return view('admin.project_editor', $data);
     }
 
     public function showPublicationManager()
     {
         $data = [];
 
-        return view('admin.', $data);
+        return view('admin.publication_manager', $data);
     }
 
     public function showPublicationEditor()
     {
         $data = [];
 
-        return view('admin.', $data);
+        return view('admin.publication_editor', $data);
     }
 
     public function showSponsorManager()
     {
         $data = [];
 
-        return view('admin.', $data);
+        return view('admin.sponsor_manager', $data);
     }
 
     public function showSponsorEditor()
     {
         $data = [];
 
-        return view('admin.', $data);
+        return view('admin.sponsor_editor', $data);
     }
 
     public function showTeamManager()
     {
         $data = [];
 
-        return view('admin.', $data);
+        return view('admin.team_manager', $data);
     }
 
     public function showTeamEditor()
     {
         $data = [];
 
-        return view('admin.', $data);
+        return view('admin.team_editor', $data);
     }
 }
